@@ -1,0 +1,442 @@
+[
+  {
+    "name": "Samsung Galaxy S24 Ultra",
+    "brand": "Samsung",
+    "image": "https://images.samsung.com/is/image/samsung/p6pim/id/2401/gallery/id-galaxy-s24-s928-490247-sm-s928blbwxid-539387825?imbypass=true",
+    "specs": {
+      "harga": 25999000,
+      "kamera": "200MP + 12MP ultrawide + 10MP tele 5x",
+      "baterai": 5000,
+      "performa": "Snapdragon 8 Gen 3"
+    }
+  },
+  {
+    "name": "Samsung Galaxy S24+",
+    "brand": "Samsung",
+    "image": "https://images.samsung.com/is/image/samsung/p6pim/id/2401/gallery/id-galaxy-s24-sm-s921bzacxid-539294370?imbypass=true",
+    "specs": {
+      "harga": 18999000,
+      "kamera": "50MP + 12MP ultrawide + 10MP tele",
+      "baterai": 4800,
+      "performa": "Snapdragon 8 Gen 3"
+    }
+  },
+  {
+    "name": "Samsung Galaxy S24",
+    "brand": "Samsung",
+    "image": "https://images.samsung.com/is/image/samsung/p6pim/id/2401/gallery/id-galaxy-s24-sm-s921bzkcxid-539294435?imbypass=true",
+    "specs": {
+      "harga": 14999000,
+      "kamera": "50MP + 12MP ultrawide + 10MP tele",
+      "baterai": 4000,
+      "performa": "Snapdragon 8 Gen 3"
+    }
+  },
+  {
+    "name": "Samsung Galaxy A55 5G",
+    "brand": "Samsung",
+    "image": "https://images.samsung.com/is/image/samsung/p6pim/id/sm-a556ezycxid/gallery/id-galaxy-a55-5g-sm-a556-498188-sm-a556ezycxid-543335427?$684_547_JPG$",
+    "specs": {
+      "harga": 7999000,
+      "kamera": "50MP OIS + 12MP ultrawide + 5MP macro",
+      "baterai": 5000,
+      "performa": "Exynos 1480"
+    }
+  },
+  {
+    "name": "Samsung Galaxy A35 5G",
+    "brand": "Samsung",
+    "image": "https://images.samsung.com/is/image/samsung/p6pim/id/sm-a356ezkgxid/gallery/id-galaxy-a35-5g-sm-a356-sm-a356ezkgxid-540157879?$684_547_PNG$",
+    "specs": {
+      "harga": 3999000,
+      "kamera": "48MP + 5MP ultrawide + 2MP macro",
+      "baterai": 5000,
+      "performa": "MediaTek Helio G85"
+    }
+  },
+  {
+    "name": "Samsung Galaxy Z Fold6",
+    "brand": "Samsung",
+    "image": "https://images.samsung.com/is/image/samsung/p6pim/id/sm-f956bakdxid/gallery/id-galaxy-z-fold6-f956-sm-f956bakdxid-542632343?imbypass=true",
+    "specs": {
+      "harga": 34999000,
+      "kamera": "50MP + 12MP ultrawide + 10MP tele",
+      "baterai": 4400,
+      "performa": "Snapdragon 8 Gen 3"
+    }
+  },
+  {
+    "name": "Samsung Galaxy Z Flip6",
+    "brand": "Samsung",
+    "image": "https://images.samsung.com/is/image/samsung/p6pim/id/sm-f741bzwaxid/gallery/id-galaxy-zflip6-f741-sm-f741bzwaxid-542631198?imbypass=true",
+    "specs": {
+      "harga": 16999000,
+      "kamera": "12MP + 12MP ultrawide",
+      "baterai": 3800,
+      "performa": "Snapdragon 8 Gen 3"
+    }
+  },
+  {
+    "name": "Apple iPhone 15 Pro Max",
+    "brand": "Apple",
+    "image": "https://cdnpro.eraspace.com/media/catalog/product/a/p/apple_iphone_15_pro_max_natural_titanium_1_1_2.jpg",
+    "specs": {
+      "harga": 30999000,
+      "kamera": "48MP + 12MP ultrawide + 12MP tele 5x",
+      "baterai": 4500,
+      "performa": "Apple A17 Pro"
+    }
+  },
+  {
+    "name": "Apple iPhone 15 Pro",
+    "brand": "Apple",
+    "image": "https://cdnpro.eraspace.com/media/catalog/product/a/p/apple_iphone_15_pro_natural_titanium_1_4.jpg",
+    "specs": {
+      "harga": 25999000,
+      "kamera": "48MP + 12MP ultrawide + 12MP tele 3x",
+      "baterai": 4300,
+      "performa": "Apple A17 Pro"
+    }
+  },
+  {
+    "name": "Apple iPhone 15 Plus",
+    "brand": "Apple",
+    "image": "https://ibox.co.id/_next/image?url=https%3A%2F%2Fcdnpro.eraspace.com%2Fmedia%2Fcatalog%2Fproduct%2Fa%2Fp%2Fapple_iphone_15_plus_green_1_1.jpg&w=1920&q=45",
+    "specs": {
+      "harga": 19999000,
+      "kamera": "48MP + 12MP ultrawide",
+      "baterai": 4352,
+      "performa": "Apple A16 Bionic"
+    }
+  },
+  {
+    "name": "Apple iPhone 15",
+    "brand": "Apple",
+    "image": "https://ibox.co.id/_next/image?url=https%3A%2F%2Fcdnpro.eraspace.com%2Fmedia%2Fcatalog%2Fproduct%2Fa%2Fp%2Fapple_iphone_15_blue_1.jpg&w=1920&q=45",
+    "specs": {
+      "harga": 17999000,
+      "kamera": "48MP + 12MP ultrawide",
+      "baterai": 3877,
+      "performa": "Apple A16 Bionic"
+    }
+  },
+  {
+    "name": "Apple iPhone SE (3rd gen)",
+    "brand": "Apple",
+    "image": "https://www.digimap.co.id/cdn/shop/files/iPhone_SE3_Midnight_PDP_Image_Position-1A__en-US_e1331ec8-47cd-4cc7-9a09-314af8a91b8f.jpg?v=1717740331",
+    "specs": {
+      "harga": 8999000,
+      "kamera": "12MP",
+      "baterai": 2018,
+      "performa": "Apple A15 Bionic"
+    }
+  },
+  {
+    "name": "Google Pixel 8 Pro",
+    "brand": "Google",
+    "image": "https://api.bstore.co.id/storage/products/1736237543_google-pixel-8-pro-12-128gb-software-support_1.png",
+    "specs": {
+      "harga": 11999000,
+      "kamera": "50MP + 48MP tele + 12MP ultrawide",
+      "baterai": 4950,
+      "performa": "Tensor G3"
+    }
+  },
+  {
+    "name": "Google Pixel 8",
+    "brand": "Google",
+    "image": "https://lh3.googleusercontent.com/Bb0pW46aE9gYCerY7R_zNVT3cWIzpnK1dQGnp7O-Ddg1gzABBy52EV9c45ypTTpPfBZbagL2IMwRwUxYe7flz-Crjp_6TKoZxDs=s0",
+    "specs": {
+      "harga": 9499000,
+      "kamera": "50MP + 12MP ultrawide",
+      "baterai": 4575,
+      "performa": "Tensor G3"
+    }
+  },
+  {
+    "name": "Google Pixel 7a",
+    "brand": "Google",
+    "image": "https://m.media-amazon.com/images/I/61r7cCpQPlL.jpg",
+    "specs": {
+      "harga": 7999000,
+      "kamera": "64MP + 13MP ultrawide",
+      "baterai": 4385,
+      "performa": "Tensor G2"
+    }
+  },
+  {
+    "name": "Google Pixel Fold",
+    "brand": "Google",
+    "image": "https://m.media-amazon.com/images/I/71MDT0OqJnL.jpg",
+    "specs": {
+      "harga": 29999000,
+      "kamera": "48MP + 10.8MP ultrawide + 10.8MP tele",
+      "baterai": 4821,
+      "performa": "Tensor G2"
+    }
+  },
+  {
+    "name": "Google Pixel Tablet",
+    "brand": "Google",
+    "image": "https://images.tokopedia.net/img/cache/700/VqbcmM/2023/6/22/b6548621-9555-4041-a8b7-80bf75d7c29f.jpg",
+    "specs": {
+      "harga": 7999000,
+      "kamera": "8MP + 8MP ultrawide",
+      "baterai": 10200,
+      "performa": "Tensor G2"
+    }
+  },
+  {
+    "name": "Xiaomi 14 Pro",
+    "brand": "Xiaomi",
+    "image": "https://down-id.img.susercontent.com/file/id-11134207-7r98z-lzfk9j6hmj1k1e",
+    "specs": {
+      "harga": 19999000,
+      "kamera": "50MP Leica + 50MP tele + 12MP ultrawide",
+      "baterai": 4820,
+      "performa": "Snapdragon 8 Gen 3"
+    }
+  },
+  {
+    "name": "Xiaomi 14",
+    "brand": "Xiaomi",
+    "image": "https://i02.appmifile.com/615_item_id/18/03/2024/4b595e0fb3236d63c2f83ee9d2a6fb1c!800x800!85.png",
+    "specs": {
+      "harga": 14999000,
+      "kamera": "50MP Leica + 12MP ultrawide",
+      "baterai": 4600,
+      "performa": "Snapdragon 8 Gen 3"
+    }
+  },
+  {
+    "name": "Xiaomi 14T Pro",
+    "brand": "Xiaomi",
+    "image": "https://completeselular.co.id/wp-content/uploads/2024/10/XIAOMI-14T-PRO@1.5x-600x600.webp",
+    "specs": {
+      "harga": 10999000,
+      "kamera": "50MP + 12MP tele + 8MP ultrawide",
+      "baterai": 5000,
+      "performa": "Dimensity 9300"
+    }
+  },
+  {
+    "name": "Xiaomi 13T Pro",
+    "brand": "Xiaomi",
+    "image": "https://i02.appmifile.com/225_item_id/21/09/2023/85b60ccd2836b7d29488f514b4b0e02b!800x800!85.png",
+    "specs": {
+      "harga": 11999000,
+      "kamera": "50MP Leica + 50MP tele + 12MP ultrawide",
+      "baterai": 5000,
+      "performa": "Dimensity 9200+"
+    }
+  },
+  {
+    "name": "Redmi Note 13 Pro+ 5G",
+    "brand": "Xiaomi",
+    "image": "https://i02.appmifile.com/521_item_id/19/02/2024/8129ae73314aba85004d8759cce126cd!800x800!85.png",
+    "specs": {
+      "harga": 6999000,
+      "kamera": "200MP OIS + 8MP ultrawide + 2MP macro",
+      "baterai": 5000,
+      "performa": "Dimensity 7200-Ultra"
+    }
+  },
+  {
+    "name": "OnePlus 12",
+    "brand": "OnePlus",
+    "image": "https://image01.oneplus.net/media/202405/28/b96848b7acd10dafde32203d12f6fea7.png",
+    "specs": {
+      "harga": 12999000,
+      "kamera": "50MP + 64MP tele + 48MP ultrawide",
+      "baterai": 5400,
+      "performa": "Snapdragon 8 Gen 3"
+    }
+  },
+  {
+    "name": "OnePlus 12R",
+    "brand": "OnePlus",
+    "image": "https://image01-eu.oneplus.net/media/202406/13/8fcc56b94b40daa363671eb0c6fda400.png",
+    "specs": {
+      "harga": 8999000,
+      "kamera": "50MP + 8MP ultrawide + 2MP macro",
+      "baterai": 5500,
+      "performa": "Dimensity 9300"
+    }
+  },
+  {
+    "name": "OnePlus Open",
+    "brand": "OnePlus",
+    "image": "https://image01-eu.oneplus.net/media/202407/31/3525425e22569a002b8428519a478d5a.png",
+    "specs": {
+      "harga": 17999000,
+      "kamera": "64MP + 48MP ultrawide + 32MP tele",
+      "baterai": 5000,
+      "performa": "Snapdragon 8 Gen 2"
+    }
+  },
+  {
+    "name": "Realme GT 6",
+    "brand": "Realme",
+    "image": "https://cdnpro.eraspace.com/media/catalog/product/r/e/realme_gt_6_fluid_silver_1_1.jpg",
+    "specs": {
+      "harga": 6999000,
+      "kamera": "50MP + 8MP ultrawide + 2MP macro",
+      "baterai": 5000,
+      "performa": "Snapdragon 8 Gen 2"
+    }
+  },
+  {
+    "name": "Realme 12 Pro+",
+    "brand": "Realme",
+    "image": "https://down-id.img.susercontent.com/file/id-11134207-7rasc-m3mdkca5m3gvfa",
+    "specs": {
+      "harga": 5999000,
+      "kamera": "200MP + 8MP ultrawide + 2MP macro",
+      "baterai": 5000,
+      "performa": "Dimensity 7050"
+    }
+  },
+  {
+    "name": "Realme 12 Pro",
+    "brand": "Realme",
+    "image": "https://images.tokopedia.net/img/cache/700/OJWluG/2024/7/18/96477b29-0114-4e34-91b4-8b17d7cfd0ed.jpg",
+    "specs": {
+      "harga": 4999000,
+      "kamera": "108MP + 8MP ultrawide + 2MP macro",
+      "baterai": 5000,
+      "performa": "Dimensity 720"
+    }
+  },
+  {
+    "name": "Realme 12",
+    "brand": "Realme",
+    "image": "https://completeselular.co.id/wp-content/uploads/2024/03/realme_12_5g.webp",
+    "specs": {
+      "harga": 3499000,
+      "kamera": "50MP + 8MP ultrawide + 2MP macro",
+      "baterai": 5000,
+      "performa": "Helio G99"
+    }
+  },
+  {
+    "name": "OPPO Find X7 Pro",
+    "brand": "OPPO",
+    "image": "https://s.alicdn.com/@sc04/kf/A12d6ca129546438c9716020d93ecacddh.jpg_720x720q50.jpg",
+    "specs": {
+      "harga": 24999000,
+      "kamera": "50MP + 50MP tele + 48MP ultrawide",
+      "baterai": 4800,
+      "performa": "Dimensity 9400+"
+    }
+  },
+  {
+    "name": "OPPO Find X7",
+    "brand": "OPPO",
+    "image": "https://cdn.kalvo.com/uploads/img/gallery/58173-oppo-find-x7-1.jpg",
+    "specs": {
+      "harga": 17999000,
+      "kamera": "50MP + 13MP ultrawide + 32MP tele",
+      "baterai": 4600,
+      "performa": "Snapdragon 8 Gen 2"
+    }
+  },
+  {
+    "name": "OPPO Reno11 Pro+ 5G",
+    "brand": "OPPO",
+    "image": "https://datascripmall.id/media/webp_image/catalog/product/cache/95a5307f46190cd7a50cf0819ebeb220/1/7/1712393410_5aa5b811-42ec-4230-9347-de667ff42429.webp",
+    "specs": {
+      "harga": 8999000,
+      "kamera": "50MP + 8MP ultrawide + 32MP portrait",
+      "baterai": 4600,
+      "performa": "Dimensity 7050"
+    }
+  },
+  {
+    "name": "OPPO Reno11 Pro",
+    "brand": "OPPO",
+    "image": "https://media.dinomarket.com/docs/imgTD/2024-01/DM_EDB7E2A3CDCFFBB613AB3B4B9541F1AF_090124170100_ll.jpg",
+    "specs": {
+      "harga": 7999000,
+      "kamera": "50MP + 8MP ultrawide + 2MP macro",
+      "baterai": 4600,
+      "performa": "Snapdragon 778G"
+    }
+  },
+  {
+    "name": "OPPO A78 5G",
+    "brand": "OPPO",
+    "image": "https://cdn.oppo.co.id/media/catalog/product/h/p/hp-a78-8_128-5g-purple-oppo-a78-5g-cph2483-europe-128gb-8gb-glowing-purple-id-01.jpg",
+    "specs": {
+      "harga": 3499000,
+      "kamera": "50MP + 2MP depth",
+      "baterai": 5000,
+      "performa": "Dimensity 700"
+    }
+  },
+  {
+    "name": "Vivo X100 Pro",
+    "brand": "Vivo",
+    "image": "https://cworld.id/wp-content/uploads/2024/06/vivo_x100_pro_asteroid_black_1.jpg",
+    "specs": {
+      "harga": 15999000,
+      "kamera": "50MP + 50MP tele + 12MP ultrawide",
+      "baterai": 5000,
+      "performa": "Snapdragon 8 Gen 3"
+    }
+  },
+  {
+    "name": "Vivo X100",
+    "brand": "Vivo",
+    "image": "https://cworld.id/wp-content/uploads/2024/06/vivo_x100_startrail_blue_1.jpg",
+    "specs": {
+      "harga": 12999000,
+      "kamera": "50MP + 12MP ultrawide",
+      "baterai": 5000,
+      "performa": "Snapdragon 8 Gen 3"
+    }
+  },
+  {
+    "name": "Vivo V29e 5G",
+    "brand": "Vivo",
+    "image": "https://cworld.id/wp-content/uploads/2023/10/vivo_v29e_5g_forest_black_1.jpg",
+    "specs": {
+      "harga": 5499000,
+      "kamera": "64MP OIS + 8MP ultrawide",
+      "baterai": 5000,
+      "performa": "Snapdragon 695"
+    }
+  },
+  {
+    "name": "Vivo V30 Pro",
+    "brand": "Vivo",
+    "image": "https://asia-exstatic-vivofs.vivo.com/PSee2l50xoirPK7y/1706865176991/9697ebced9b53d72d1139350a9306f1c.png",
+    "specs": {
+      "harga": 7999000,
+      "kamera": "50MP + 8MP ultrawide + 2MP depth",
+      "baterai": 4600,
+      "performa": "Dimensity 8200"
+    }
+  },
+  {
+    "name": "Vivo Y27 5G",
+    "brand": "Vivo",
+    "image": "https://asia-exstatic-vivofs.vivo.com/PSee2l50xoirPK7y/1689064039887/743259fe29a1ee40cd1954d0152d853c.png",
+    "specs": {
+      "harga": 2999000,
+      "kamera": "50MP + 2MP depth",
+      "baterai": 5000,
+      "performa": "Dimensity 6020"
+    }
+  },
+  {
+    "name": "Nothing Phone (3)",
+    "brand": "Nothing",
+    "image": "https://i0.wp.com/www.smartprix.com/bytes/wp-content/uploads/2024/04/image-72.png?ssl=1&quality=80&w=f",
+    "specs": {
+      "harga": 13999000,
+      "kamera": "50MP + 50MP ultrawide",
+      "baterai": 4500,
+      "performa": "Snapdragon 8+ Gen 2"
+    }
+  }
+]

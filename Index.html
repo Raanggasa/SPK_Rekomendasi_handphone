@@ -1,0 +1,763 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Sistem Rekomendasi HP - Metode SAW</title>
+  <link rel="icon" type="image/png" href="https://static.wikia.nocookie.net/logopedia/images/c/ce/Erafone_icon.svg">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <style>
+    :root {
+      --primary-color: #dc3545;
+      --secondary-color: #ffc107;
+    }
+
+    /* Navbar */
+    .navbar {
+      background: var(--primary-color) !important;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+    }
+    
+    .navbar-brand img {
+      height: 40px;
+      transition: transform 0.3s;
+    }
+    
+    .navbar-brand:hover img {
+      transform: scale(1.05);
+    }
+
+    /* Carousel */
+    .carousel-item {
+      padding: 30px 0;
+    }
+    .card-wrapper {
+      width: 100%;
+      max-width: 1320px; /* Lebih lebar */
+      margin: auto;
+      padding: 0 20px;
+    }
+    .card {
+      border-radius: 20px;
+      overflow: hidden;
+      box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15);
+    }
+    .card img {
+      border-radius: 20px;
+      width: 100%;
+      height: auto;
+      object-fit: cover;
+    }
+
+    /* Stepper */
+    .stepper-wrapper {
+      position: relative;
+      margin: 2rem auto;
+    }
+    
+    .stepper-item {
+      position: relative;
+      z-index: 1;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      width: 150px;
+    }
+    
+    .stepper-circle {
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      background: #dee2e6;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 700;
+      color: #fff;
+      transition: all 0.3s;
+    }
+    
+    .stepper-circle.active {
+      background: var(--primary-color);
+      transform: scale(1.1);
+    }
+    
+    .stepper-circle.completed {
+      background: #28a745;
+    }
+    
+    .stepper-line {
+      position: absolute;
+      top: 20px;
+      left: 0;
+      height: 2px;
+      background: #dee2e6;
+      width: 100%;
+    }
+
+    /* Form Kriteria */
+    .criteria-card {
+      background: #fff;
+      border-radius: 15px;
+      padding: 1.5rem;
+      margin-bottom: 1.5rem;
+      box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+      transition: all 0.3s;
+    }
+    
+    .criteria-card:hover {
+      box-shadow: 0 8px 15px rgba(0,0,0,0.1);
+      transform: translateY(-3px);
+    }
+    
+    .criteria-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 1rem;
+    }
+    
+    .criteria-type {
+      font-size: 0.8rem;
+      padding: 0.3rem 0.8rem;
+      border-radius: 20px;
+    }
+    
+    .cost {
+      background: #ffd70033;
+      color: #ffd700;
+    }
+    
+    .benefit {
+      background: #28a74533;
+      color: #28a745;
+    }
+
+    /* Tabel Penilaian */
+    .rating-table th {
+      background: var(--primary-color);
+      color: white;
+      vertical-align: middle;
+    }
+    
+    .rating-input {
+      width: 80px;
+      text-align: center;
+      border: 2px solid #dee2e6;
+      border-radius: 8px;
+      padding: 0.5rem;
+      transition: all 0.3s;
+    }
+    
+    .rating-input:focus {
+      border-color: var(--primary-color);
+      box-shadow: none;
+    }
+
+    /* Hasil Rekomendasi */
+    .phone-card {
+      border: none;
+      border-radius: 15px;
+      overflow: hidden;
+      transition: all 0.3s;
+      position: relative;
+    }
+    
+    .phone-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+    }
+    
+    .phone-card img {
+      aspect-ratio: 1 / 1;
+      width: 100%;
+      height: auto;
+      object-fit: cover;
+      border-bottom: 3px solid var(--primary-color);
+      background: #f8f9fa;
+      display: block;
+    }
+    
+    .badge-rating {
+      position: absolute;
+      top: 10px;
+      right: 10px;
+      background: var(--primary-color);
+      color: white;
+      padding: 0.5rem 1rem;
+      border-radius: 10px;
+      font-size: 1.1rem;
+    }
+    
+    .progress {
+      height: 25px;
+      border-radius: 12px;
+      overflow: hidden;
+    }
+    
+    .progress-bar {
+      background-color: var(--primary-color);
+      font-weight: 500;
+    }
+      @keyframes zoomIn {
+    from {
+      transform: scale(0.8);
+      opacity: 0;
+    }
+    to {
+      transform: scale(1);
+      opacity: 1;
+    }
+  }
+
+  .modal.fade .modal-dialog {
+    animation: zoomIn 0.5s ease-in-out;
+  }
+
+  .modal-header {
+    background-color: #d32f2f; /* Merah Erafone */
+  }
+
+  .modal-header img {
+    height: 40px;
+    margin-right: 10px;
+  }
+
+  .modal-title {
+    display: flex;
+    align-items: center;
+    font-weight: bold;
+    font-size: 1.25rem;
+  }
+
+  .modal-body p {
+    margin-bottom: 1rem;
+  }
+
+  .btn-success {
+    background-color: #d32f2f;
+    border: none;
+  }
+
+  .btn-success:hover {
+    background-color: #b71c1c;
+  }
+  </style>
+</head>
+<body>
+  <!-- Modal -->
+  <div class="modal fade" id="infoModal" tabindex="-1" aria-labelledby="infoModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content shadow-lg rounded-4">
+        <div class="modal-header text-white">
+          <h5 class="modal-title" id="infoModalLabel">
+            <img src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEiHDDip7CGAyQctiB0xP4ZaEgj6VroZp-3RbjttR8Ala1ZxYJ6HruXS6ttXtge3DWfa6weYEXJf7iA5XrfjMSL2WeHY9RqsOwEK_SlElp9RODSs99dy-sRxawz7oO2aY1zCY1PZs9hBde2G/s1600/erafonelogo-white.png" alt="Erafone Logo">
+            Selamat Datang
+          </h5>
+          <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Tutup"></button>
+        </div>
+        <div class="modal-body">
+          <p><strong>Website ini merupakan Sistem Pendukung Keputusan (SPK)</strong> untuk <strong>rekomendasi handphone</strong> menggunakan <strong>metode SAW (Simple Additive Weighting)</strong>.</p>
+          <p>Studi kasus pada sistem ini diambil dari perusahaan <strong>Erafone</strong> dan telah dibuat dengan <strong>izin dari instansi terkait</strong>.</p>
+          <p>Website ini dibuat sebagai bagian dari <strong>tugas perkuliahan</strong> guna memenuhi syarat penyelesaian mata kuliah terkait sistem pendukung keputusan.</p>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-success" data-bs-dismiss="modal">Mengerti</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Script to show modal on page load -->
+  <script>
+    window.addEventListener('load', function () {
+      var infoModal = new bootstrap.Modal(document.getElementById('infoModal'));
+      infoModal.show();
+    });
+  </script>
+
+  <!-- Navbar -->
+  <nav class="navbar navbar-expand-lg navbar-dark sticky-top">
+    <div class="container">
+      <a class="navbar-brand" href="#">
+        <img src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEiHDDip7CGAyQctiB0xP4ZaEgj6VroZp-3RbjttR8Ala1ZxYJ6HruXS6ttXtge3DWfa6weYEXJf7iA5XrfjMSL2WeHY9RqsOwEK_SlElp9RODSs99dy-sRxawz7oO2aY1zCY1PZs9hBde2G/s1600/erafonelogo-white.png" alt="Logo">
+      </a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav ms-auto">
+          <li class="nav-item"><a class="nav-link active" href="#">Beranda</a></li>
+          <li class="nav-item"><a class="nav-link" href="#calculator">Kalkulator</a></li>
+          <li class="nav-item"><a class="nav-link" href="#result">Hasil</a></li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+  
+    <!-- Carousel -->
+  <div id="cardCarousel" class="carousel slide" data-bs-ride="carousel" data-bs-interval="5000">
+    <div class="carousel-inner">
+
+      <!-- Slide 1 -->
+      <div class="carousel-item active">
+        <div class="card-wrapper">
+          <div class="card">
+            <img src="https://cdn.eraspace.com/pub/media/wysiwyg/Banner-2024/iphone_16_pro_desktop_result.webp" class="card-img-top" alt="Card 1">
+          </div>
+        </div>
+      </div>
+
+      <!-- Slide 2 -->
+      <div class="carousel-item">
+        <div class="card-wrapper">
+          <div class="card">
+            <img src="https://cdn.eraspace.com/pub/media/wysiwyg/Banner-2024/iphone_16_desktop_result.webp" class="card-img-top" alt="Card 2">
+          </div>
+        </div>
+      </div>
+
+      <!-- Slide 3 -->
+      <div class="carousel-item">
+        <div class="card-wrapper">
+          <div class="card">
+            <img src="https://cdn.eraspace.com/pub/media/wysiwyg/Banner-2024/iphone_16e_desktop_result.webp" class="card-img-top" alt="Card 3">
+          </div>
+        </div>
+      </div>
+      
+    </div>
+
+    <!-- Carousel Controls -->
+    <button class="carousel-control-prev" type="button" data-bs-target="#cardCarousel" data-bs-slide="prev">
+      <span class="carousel-control-prev-icon"></span>
+    </button>
+    <button class="carousel-control-next" type="button" data-bs-target="#cardCarousel" data-bs-slide="next">
+      <span class="carousel-control-next-icon"></span>
+    </button>
+  </div>
+  
+  <!-- Penjelasan Metode SAW -->
+  <section style="background-color: #f2f2f2; padding: 2rem 0;">
+    <div class="container">
+      <h3 class="text-center mb-4" style="font-weight: 600; color: #333;">
+        Cara Kerja Metode SAW
+      </h3>
+      <div class="row text-center g-3">
+  
+        <div class="col-md-4 d-flex flex-column align-items-center">
+          <i class="fa-solid fa-mobile-screen fa-2x text-danger mb-2"></i>
+          <p style="margin: 0; font-size: 0.9rem; color: #555;">
+            Tentukan spesifikasi HP yang diinginkan
+          </p>
+        </div>
+  
+        <div class="col-md-4 d-flex flex-column align-items-center">
+          <i class="fa-solid fa-list-check fa-2x text-danger mb-2"></i>
+          <p style="margin: 0; font-size: 0.9rem; color: #555;">
+            Tentukan kriteria dan beri poin
+          </p>
+        </div>
+  
+        <div class="col-md-4 d-flex flex-column align-items-center">
+          <i class="fa-solid fa-chart-simple fa-2x text-danger mb-2"></i>
+          <p style="margin: 0; font-size: 0.9rem; color: #555;">
+            Tampilkan data ranking
+          </p>
+        </div>
+  
+      </div>
+    </div>
+  </section>
+
+    <!-- Stepper -->
+    <div class="container py-4" id="calculator">
+        <div class="stepper-wrapper">
+            <div class="stepper-line"></div>
+            <div class="stepper-progress" id="stepper-progress"></div>
+            <div class="d-flex justify-content-between">
+                <div class="stepper-item">
+                    <div class="stepper-circle active" id="step1-circle">1</div>
+                    <small class="mt-2">Pilih Kriteria</small>
+                </div>
+                <div class="stepper-item">
+                    <div class="stepper-circle" id="step2-circle">2</div>
+                    <small class="mt-2">Beri Nilai</small>
+                </div>
+                <div class="stepper-item">
+                    <div class="stepper-circle" id="step3-circle">3</div>
+                    <small class="mt-2">Hasil</small>
+                </div>
+            </div>
+        </div>
+    </div>
+
+  <!-- Step 1: Filter Kriteria -->
+  <section class="container py-4 step-content" id="step1-content">
+    <h3 class="text-center mb-4 text-danger">Pilih Kriteria Pencarian</h3>
+    
+    <div class="row g-4">
+      <div class="col-md-6">
+        <div class="criteria-card">
+          <div class="criteria-header">
+            <h5 class="mb-0">Merek</h5>
+          </div>
+          <select class="form-select" id="filter-brand">
+            <option value="">Semua Merek</option>
+          </select>
+        </div>
+      </div>
+
+      <div class="col-md-6">
+        <div class="criteria-card">
+          <div class="criteria-header">
+            <h5 class="mb-0">Resolusi Kamera (MP)</h5>
+          </div>
+          <input type="number" class="form-control" id="filter-camera" min="0" placeholder="Minimum MP kamera">
+        </div>
+      </div>
+
+      <div class="col-md-6">
+        <div class="criteria-card">
+          <div class="criteria-header">
+            <h5 class="mb-0">Kapasitas Baterai (mAh)</h5>
+          </div>
+          <input type="number" class="form-control" id="filter-battery" min="0" placeholder="Minimum kapasitas baterai">
+        </div>
+      </div>
+
+      <div class="col-md-6">
+        <div class="criteria-card">
+          <div class="criteria-header">
+            <h5 class="mb-0">Harga Maksimal</h5>
+          </div>
+          <input type="number" class="form-control" id="filter-price" min="0" placeholder="Maksimal harga (Rp)">
+        </div>
+      </div>
+    </div>
+
+    <div class="text-center mt-5">
+      <button class="btn btn-danger btn-lg px-5" onclick="loadPhones()">Cari HP <i class="fas fa-search ms-2"></i></button>
+    </div>
+  </section>
+
+  <!-- Step 2: Bobot Kriteria -->
+  <section class="container py-4 step-content d-none" id="step2-content">
+    <h3 class="text-center mb-4 text-danger">Pentingnya Kriteria</h3>
+    
+    <div class="row g-4">
+      <div class="col-md-6">
+        <div class="criteria-card">
+          <div class="criteria-header">
+            <h5 class="mb-0">Harga</h5>
+            <span class="criteria-type cost">Cost</span>
+          </div>
+          <small class="text-muted d-block mb-3">Semakin rendah semakin baik</small>
+          <div class="d-flex align-items-center">
+            <input type="range" class="form-range" min="1" max="5" value="3" id="weight-harga">
+            <span class="ms-3 fw-bold fs-5" id="weight-harga-value">3</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-md-6">
+        <div class="criteria-card">
+          <div class="criteria-header">
+            <h5 class="mb-0">Kamera</h5>
+            <span class="criteria-type benefit">Benefit</span>
+          </div>
+          <small class="text-muted d-block mb-3">Semakin tinggi semakin baik</small>
+          <div class="d-flex align-items-center">
+            <input type="range" class="form-range" min="1" max="5" value="3" id="weight-kamera">
+            <span class="ms-3 fw-bold fs-5" id="weight-kamera-value">3</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-md-6">
+        <div class="criteria-card">
+          <div class="criteria-header">
+            <h5 class="mb-0">Baterai</h5>
+            <span class="criteria-type benefit">Benefit</span>
+          </div>
+          <small class="text-muted d-block mb-3">Semakin tinggi semakin baik</small>
+          <div class="d-flex align-items-center">
+            <input type="range" class="form-range" min="1" max="5" value="3" id="weight-baterai">
+            <span class="ms-3 fw-bold fs-5" id="weight-baterai-value">3</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-md-6">
+        <div class="criteria-card">
+          <div class="criteria-header">
+            <h5 class="mb-0">Performa</h5>
+            <span class="criteria-type benefit">Benefit</span>
+          </div>
+          <small class="text-muted d-block mb-3">Semakin tinggi semakin baik</small>
+          <div class="d-flex align-items-center">
+            <input type="range" class="form-range" min="1" max="5" value="3" id="weight-performa">
+            <span class="ms-3 fw-bold fs-5" id="weight-performa-value">3</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="d-flex justify-content-between mt-5">
+      <button class="btn btn-outline-danger" onclick="showStep(1)"><i class="fas fa-arrow-left me-2"></i>Kembali</button>
+      <button class="btn btn-danger" onclick="showRatingStep()">Lanjutkan <i class="fas fa-arrow-right ms-2"></i></button>
+    </div>
+  </section>
+
+  <!-- Step 3: Hasil -->
+  <section class="container py-4 step-content d-none" id="step3-content">
+    <h3 class="text-center mb-4 text-danger">Hasil Rekomendasi</h3>
+    
+    <div class="row g-4" id="result-container">
+      <!-- Hasil akan diisi oleh JavaScript -->
+    </div>
+
+    <div class="text-center mt-5">
+      <button class="btn btn-outline-danger" onclick="showStep(2)"><i class="fas fa-arrow-left me-2"></i>Kembali</button>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer style="background-color: #343a40; color: #fff; padding: 1rem 0; text-align: center;">
+    <div class="container">
+      <p style="margin: 0; font-size: 0.9rem;">
+        &copy; 2025 Erafone. All rights reserved.
+      </p>
+    </div>
+  </footer>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+  <script>
+      let allPhones = [];
+      let filteredPhones = [];
+      
+      // Inisialisasi aplikasi
+      document.addEventListener('DOMContentLoaded', () => {
+          loadData();
+          updateStepper(1);
+          
+          // Event listener untuk range slider
+          document.querySelectorAll('input[type="range"]').forEach(slider => {
+              slider.addEventListener('input', function() {
+                  document.getElementById(`${this.id}-value`).textContent = this.value;
+              });
+          });
+      });
+
+      // Fungsi update stepper
+      function updateStepper(step) {
+          // Update lingkaran stepper
+          const steps = [1, 2, 3];
+          steps.forEach(num => {
+              const circle = document.getElementById(`step${num}-circle`);
+              circle.classList.toggle('active', num <= step);
+          });
+
+          // Update progress bar
+          const progress = ((step - 1) / 2) * 100;
+          document.getElementById('stepper-progress').style.width = `${progress}%`;
+      }
+
+      // Navigasi step
+      function showStep(step) {
+          // Sembunyikan semua konten
+          document.querySelectorAll('.step-content').forEach(el => el.classList.add('d-none'));
+          
+          // Tampilkan step yang dipilih
+          document.getElementById(`step${step}-content`).classList.remove('d-none');
+          
+          // Update stepper
+          updateStepper(step);
+      }
+
+      // Load data HP
+      async function loadData() {
+          try {
+              const response = await fetch('data.json');
+              allPhones = await response.json();
+              initBrandFilter();
+          } catch (error) {
+              console.error('Error loading data:', error);
+              alert('Gagal memuat data HP!');
+          }
+      }
+
+      // Inisialisasi filter merek
+      function initBrandFilter() {
+          const brands = [...new Set(allPhones.map(phone => phone.brand))];
+          const select = document.getElementById('filter-brand');
+          
+          brands.forEach(brand => {
+              const option = document.createElement('option');
+              option.value = brand;
+              option.textContent = brand;
+              select.appendChild(option);
+          });
+      }
+
+      // Filter HP berdasarkan kriteria
+      function loadPhones() {
+          const brand = document.getElementById('filter-brand').value;
+          const minCamera = parseInt(document.getElementById('filter-camera').value) || 0;
+          const minBattery = parseInt(document.getElementById('filter-battery').value) || 0;
+          const maxPrice = parseInt(document.getElementById('filter-price').value) || Infinity;
+
+          filteredPhones = allPhones.filter(phone => {
+              const cameraMP = parseInt(phone.specs.kamera.split('MP')[0]);
+              return (
+                  (brand ? phone.brand === brand : true) &&
+                  cameraMP >= minCamera &&
+                  phone.specs.baterai >= minBattery &&
+                  phone.specs.harga <= maxPrice
+              );
+          });
+
+          if (filteredPhones.length === 0) {
+              alert('Tidak ditemukan HP yang sesuai kriteria!');
+              return;
+          }
+
+          showStep(2);
+      }
+
+      // Hitung menggunakan metode SAW
+      function calculateSAW() {
+          // Ambil bobot dari slider
+          const weights = {
+              harga: parseInt(document.getElementById('weight-harga').value),
+              kamera: parseInt(document.getElementById('weight-kamera').value),
+              baterai: parseInt(document.getElementById('weight-baterai').value),
+              performa: parseInt(document.getElementById('weight-performa').value)
+          };
+
+          // Normalisasi bobot
+          const totalWeight = Object.values(weights).reduce((a, b) => a + b, 0);
+          const normalizedWeights = {
+              harga: weights.harga / totalWeight,
+              kamera: weights.kamera / totalWeight,
+              baterai: weights.baterai / totalWeight,
+              performa: weights.performa / totalWeight
+          };
+
+          // Hitung nilai tiap HP
+          const results = filteredPhones.map(phone => {
+              // Ekstrak nilai kriteria
+              const cameraMP = parseInt(phone.specs.kamera.split('MP')[0]);
+              const battery = phone.specs.baterai;
+              const price = phone.specs.harga;
+              const performanceScore = getPerformanceScore(phone.specs.performa);
+
+              // Normalisasi nilai
+              const maxValues = {
+                  harga: Math.max(...filteredPhones.map(p => p.specs.harga)),
+                  kamera: Math.max(...filteredPhones.map(p => parseInt(p.specs.kamera.split('MP')[0]))),
+                  baterai: Math.max(...filteredPhones.map(p => p.specs.baterai)),
+                  performa: Math.max(...filteredPhones.map(p => getPerformanceScore(p.specs.performa)))
+              };
+
+              const normalized = {
+                  harga: maxValues.harga / price, // Cost (semakin kecil harga semakin baik)
+                  kamera: cameraMP / maxValues.kamera,
+                  baterai: battery / maxValues.baterai,
+                  performa: performanceScore / maxValues.performa
+              };
+
+              // Hitung skor akhir
+              const score = (
+                  normalized.harga * normalizedWeights.harga +
+                  normalized.kamera * normalizedWeights.kamera +
+                  normalized.baterai * normalizedWeights.baterai +
+                  normalized.performa * normalizedWeights.performa
+              ) * 100;
+
+              return {
+                  ...phone,
+                  score: parseFloat(score.toFixed(2)),
+                  details: { normalized, weights: normalizedWeights }
+              };
+          });
+
+          // Urutkan berdasarkan skor
+          results.sort((a, b) => b.score - a.score);
+          showResults(results);
+      }
+
+      // Mapping skor performa
+      function getPerformanceScore(chipset) {
+          const performanceMap = {
+              'Snapdragon 8 Gen 3': 100,
+              'Dimensity 9200': 95,
+              'Exynos 2200': 90,
+              'Snapdragon 695': 75,
+              'Dimensity 7050': 80,
+              'Helio G99': 70
+          };
+          return performanceMap[chipset] || 65; // Default value
+      }
+
+      // Tampilkan hasil
+      function showResults(results) {
+          const container = document.getElementById('result-container');
+          container.innerHTML = results.map((phone, index) => `
+          <div class="col-lg-4 col-md-6 mb-4 d-flex align-items-stretch">
+          <div class="phone-card card shadow-sm w-100 position-relative">
+              <img src="${phone.image}" class="card-img-top" alt="${phone.name}">
+              <span class="badge-rating shadow">#${index + 1}</span>
+              <div class="card-body d-flex flex-column">
+              <h5 class="card-title fw-bold text-danger mb-2">${phone.name}</h5>
+              <div class="mb-3">
+              <div class="progress" style="height: 22px;">
+                  <div class="progress-bar" 
+                  role="progressbar" 
+                  style="width: ${phone.score}%" 
+                  aria-valuenow="${phone.score}" 
+                  aria-valuemin="0" 
+                  aria-valuemax="100">
+                  <span class="fw-semibold">${phone.score}%</span>
+                  </div>
+              </div>
+              </div>
+              <ul class="list-group list-group-flush mb-3">
+              <li class="list-group-item d-flex align-items-center border-0 px-0 py-1 bg-transparent">
+                  <i class="fas fa-tag me-2 text-warning"></i>
+                  <span class="fw-semibold">Rp ${phone.specs.harga.toLocaleString('id-ID')}</span>
+              </li>
+              <li class="list-group-item d-flex align-items-center border-0 px-0 py-1 bg-transparent">
+                  <i class="fas fa-camera me-2 text-info"></i>
+                  <span>${phone.specs.kamera}</span>
+              </li>
+              <li class="list-group-item d-flex align-items-center border-0 px-0 py-1 bg-transparent">
+                  <i class="fas fa-battery-full me-2 text-success"></i>
+                  <span>${phone.specs.baterai} mAh</span>
+              </li>
+              <li class="list-group-item d-flex align-items-center border-0 px-0 py-1 bg-transparent">
+                  <i class="fas fa-microchip me-2 text-secondary"></i>
+                  <span>${phone.specs.performa}</span>
+              </li>
+              </ul>
+              <div class="mt-auto text-end">
+              <span class="badge bg-danger bg-gradient rounded-pill px-3 py-2 fs-6">
+                  Rekomendasi #${index + 1}
+              </span>
+              </div>
+              </div>
+          </div>
+          </div>
+          `).join('');
+          showStep(3);
+      }
+
+      // Fungsi untuk pindah ke step rating
+      function showRatingStep() {
+          calculateSAW();
+      }
+  </script>
+</body>
+</html>
